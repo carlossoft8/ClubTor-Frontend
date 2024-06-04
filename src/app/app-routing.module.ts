@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ChatsPageComponent } from './components/chats-page/chats-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -18,9 +22,28 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
-    canActivate: [AuthGuard]
-  },
+    component: TabsComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'home',
+        component: HomePageComponent
+      },
+      {
+        path: 'chats',
+        component: ChatsPageComponent
+      },
+      {
+        path: 'profile',
+        component: ProfilePageComponent
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      }
+    ]
+  }
 ];
 
 @NgModule({

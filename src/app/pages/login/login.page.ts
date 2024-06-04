@@ -27,7 +27,7 @@ export class LoginPage {
       tap(async (response: any) => {
         console.log('Login successful', response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/tabs/club']);
+        this.router.navigate(['/tabs/home']);
       }),
       catchError(async (error: any) => {
         console.error('Login error', error);

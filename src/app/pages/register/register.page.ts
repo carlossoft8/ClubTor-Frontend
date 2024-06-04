@@ -29,7 +29,7 @@ export class RegisterPage {
       tap(async (response: any) => {
         console.log('Registration successful', response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/tabs/club']);
+        this.router.navigate(['/home']);
       }),
       catchError(async (error: any) => {
         console.error('Registration error', error);
